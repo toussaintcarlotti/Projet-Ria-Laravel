@@ -84,6 +84,11 @@
                                 <a href="{{ route('students.index') }}"
                                    class="nav-link {{ active_class(['etudiants']) }}">Tous les étudiants</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('teachers.students', auth()->user()->profile) }}"
+                                   class="nav-link {{ active_class(['enseignants/*/etudiants']) }}">Mes étudiants</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

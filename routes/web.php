@@ -15,6 +15,7 @@ use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CoursEnseignantsController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
+use App\Http\Controllers\EtudiantsEnseignantsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -47,14 +48,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Etudiants
         Route::get('etudiants', [EtudiantsController::class, 'index'])->name('students.index');
 
-        // Cours Enseignants
+        // Enseignants
         Route::prefix('enseignants/{enseignant}/')->name('teachers.')->group(function () {
+            // Cours
             Route::get('cours', [CoursEnseignantsController::class, 'index'])->name('courses');
             Route::get('cours/créer', [CoursEnseignantsController::class, 'create'])->name('courses.create');
             Route::post('cours/créer', [CoursEnseignantsController::class, 'store'])->name('courses.store');
             Route::get('cours/{cours}/modifier', [CoursEnseignantsController::class, 'edit'])->name('courses.edit');
             Route::put('cours/{cours}/modifier', [CoursEnseignantsController::class, 'update'])->name('courses.update');
             Route::delete('cours/{cours}/supprimer', [CoursEnseignantsController::class, 'destroy'])->name('courses.destroy');
+
+            // Etudiants
+            Route::get('etudiants', [EtudiantsEnseignantsController::class, 'index'])->name('students');
         });
 
         // Cours

@@ -4,7 +4,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Étudiants</h4>
+            <h4 class="mb-3 mb-md-0">Vos cours</h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             @if (isset($enseignant))
@@ -13,7 +13,6 @@
                     Ajouter un cours
                 </a>
             @endif
-
         </div>
     </div>
 
@@ -28,6 +27,7 @@
                             <tr>
                                 <th>Matière</th>
                                 <th>Type de cours</th>
+                                <th>Ue</th>
                                 <th>Horaire</th>
                                 <th></th>
                             </tr>
@@ -37,6 +37,7 @@
                                 <tr>
                                     <td>{{ $cour->matiere->libelle_matiere }}</td>
                                     <td>{{ $cour->type_cours }}</td>
+                                    <td>{{ $cour->ue->libelle ?? "Aucune" }}</td>
                                     <td>{{ $cour->horaire_debut . "-" . $cour->horaire_fin }}</td>
                                     <td>
                                         <a href="{{ route('teachers.courses.edit', [$enseignant, $cour]) }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">

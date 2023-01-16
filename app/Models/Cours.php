@@ -21,4 +21,9 @@ class Cours extends Model
     {
         return $this->belongsTo(Enseignant::class);
     }
+
+    public function ue(): BelongsTo
+    {
+        return $this->belongsTo(Ue::class);
+    }
 }
