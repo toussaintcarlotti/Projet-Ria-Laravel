@@ -3,11 +3,11 @@ $(function () {
     'use strict';
 
     $('#datetimepickerExample').datetimepicker({
-        format: 'H:m'
+        format: 'H:mm'
     });
 
     $('#datetimepicker').datetimepicker({
-        format: 'H:m'
+        format: 'H:mm'
     });
 
 

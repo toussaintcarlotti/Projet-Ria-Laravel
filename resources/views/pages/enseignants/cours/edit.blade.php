@@ -24,6 +24,7 @@
                 <div class="card-body">
                     <form class="forms-sample row" action="{{ route('teachers.courses.update', [$enseignant, $cours]) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="col-md-6 mb-3">
                             <label for="horaire_debut" class="form-label">Horaire debut</label>
                             <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">

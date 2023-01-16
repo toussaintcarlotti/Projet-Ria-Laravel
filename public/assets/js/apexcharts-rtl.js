@@ -135,7 +135,7 @@ $(function() {
       tooltip: {
         theme: 'light'
       },
-      colors: [colors.primary],    
+      colors: [colors.primary],
       grid: {
         padding: {
           bottom: -4
@@ -191,7 +191,7 @@ $(function() {
         }
       }
     }
-    
+
     var apexBarChart = new ApexCharts(document.querySelector("#apexBar"), options);
     apexBarChart.render();
   }
@@ -216,9 +216,6 @@ $(function() {
       },
       theme: {
         mode: 'light'
-      },
-      tooltip: {
-        theme: 'light'
       },
       colors: [colors.danger, colors.info],
       stroke: {
@@ -339,9 +336,6 @@ $(function() {
       },
       theme: {
         mode: 'light'
-      },
-      tooltip: {
-        theme: 'light'
       },
       colors: [colors.danger, colors.info],
       grid: {
@@ -486,7 +480,7 @@ $(function() {
 
 
 
-  
+
   // Apex Pie chart end
   if ($('#apexPie').length) {
     var options = {
@@ -524,9 +518,9 @@ $(function() {
       },
       series: [44, 55, 13, 33]
     };
-    
+
     var chart = new ApexCharts(document.querySelector("#apexPie"), options);
-    chart.render();  
+    chart.render();
   }
   // Apex Pie chart end
 
@@ -789,7 +783,7 @@ $(function() {
 
 
 
-  
+
   // Apex Scatter chart start
   if ($('#apexScatter').length) {
     var options = {
@@ -911,7 +905,7 @@ $(function() {
       },
       colors: [colors.primary, colors.warning, colors.danger, colors.info],
       fill: {
-        
+
       },
       grid: {
         padding: {
@@ -932,7 +926,7 @@ $(function() {
             background: colors.gridBorder,
             strokeWidth: '100%',
             opacity: 1,
-            margin: 5, 
+            margin: 5,
         },
         }
       },
@@ -949,11 +943,11 @@ $(function() {
         },
       },
     };
-    
+
     var chart = new ApexCharts(document.querySelector("#apexRadialBar"), options);
     chart.render();
     var chartAreaBounds = chart.w.globals.dom.baseEl.querySelector('.apexcharts-inner').getBoundingClientRect();
   }
-  // Apex Radialbar chart end  
+  // Apex Radialbar chart end
 
 });

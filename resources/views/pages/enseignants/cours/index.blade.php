@@ -27,6 +27,7 @@
                             <thead>
                             <tr>
                                 <th>Matière</th>
+                                <th>Type de cours</th>
                                 <th>Horaire</th>
                                 <th></th>
                             </tr>
@@ -35,6 +36,7 @@
                             @foreach($cours as $cour)
                                 <tr>
                                     <td>{{ $cour->matiere->libelle_matiere }}</td>
+                                    <td>{{ $cour->type_cours }}</td>
                                     <td>{{ $cour->horaire_debut . "-" . $cour->horaire_fin }}</td>
                                     <td>
                                         <a href="{{ route('teachers.courses.edit', [$enseignant, $cour]) }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">

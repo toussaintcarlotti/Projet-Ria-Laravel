@@ -30,11 +30,25 @@ class CoursEnseignantsController extends Controller
         return redirect()->route('teachers.courses', $enseignant)->with('success', 'Cours ajouté avec succès');
     }
 
-    public function edit(Enseignant $enseignant, $id)
+    public function edit(Enseignant $enseignant, $cours_id)
     {
         $matieres = Matiere::all();
-        $cours = $enseignant->cours()->findOrFail($id);
+        $cours = $enseignant->cours()->findOrFail($cours_id);
         return view('pages.enseignants.cours.edit', compact('enseignant', 'cours', 'matieres'));
+    }
+
+    public function update(Enseignant $enseignant, $id, CoursesRequest $request)
+    {
+        $cours = $enseignant->cours()->findOrFail($id);
+        $cours->update($request->validated());
+        return redirect()->route('teachers.courses', $enseignant)->with('success', 'Cours modifié avec succès');
+    }
+
+    public function destroy(Enseignant $enseignant, $id)
+    {
+        $cours = $enseignant->cours()->findOrFail($id);
+        $cours->delete();
+        return redirect()->route('teachers.courses', $enseignant)->with('success', 'Cours supprimé avec succès');
     }
 
 }
