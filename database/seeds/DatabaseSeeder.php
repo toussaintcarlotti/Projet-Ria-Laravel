@@ -2,6 +2,7 @@
 
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\CoursSeeder;
+use Database\Seeders\EdtSeeder;
 use Database\Seeders\EnseignantSeeder;
 use Database\Seeders\EtudiantSeeder;
 use Database\Seeders\FiliereSeeder;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CoursSeeder::class,
             UeSeeder::class,
             NoteSeeder::class,
+            EdtSeeder::class
         ]);
     }
 }

@@ -38,4 +38,10 @@ class Cours extends Model
     {
         return $this->notes->where('etudiant_id', $etudiant->id);
     }
+
+    public function edts(): HasMany
+    {
+        return $this->hasMany(Edt::class);
+    }
+
 }

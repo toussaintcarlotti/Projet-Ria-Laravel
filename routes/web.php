@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CoursEnseignantsController;
+use App\Http\Controllers\EdtEtudiantController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
 use App\Http\Controllers\EtudiantsEnseignantsController;
@@ -44,7 +45,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('profil/{profile}', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('profil/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
 
-    Route::get('etudiant/{etudiant}/notes', NotesEtudiantController::class)->name('students.notes');
+    Route::prefix('etudiant/{etudiant}/')->name('students.')->group(function () {
+        Route::get('notes', NotesEtudiantController::class)->name('notes');
+
+        Route::get('emploi-du-temps', [EdtEtudiantController::class, 'show'])->name('edt');
+    });
 
     // Droit : Directeur departement
     Route::middleware(['directeur.departement'])->group(function () {

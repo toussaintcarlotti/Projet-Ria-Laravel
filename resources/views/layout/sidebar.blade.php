@@ -124,6 +124,12 @@
                         <span class="link-title">Mes notes</span>
                     </a>
                 </li>
+                <li class="nav-item {{ active_class(['etudiant/*/emploi-du-temps']) }}">
+                    <a href="{{ route('students.edt', auth()->user()->profile) }}" class="nav-link">
+                        <i class="link-icon" data-feather="box"></i>
+                        <span class="link-title">Emploi du temps</span>
+                    </a>
+                </li>
             @endif
 
         </ul>

@@ -24,6 +24,7 @@
         "webpack-rtl-plugin": "^2.0.0"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.0.3",
         "@mdi/font": "^7.1.96",
         "@popperjs/core": "^2.11.6",
         "ace-builds": "^1.14.0",
