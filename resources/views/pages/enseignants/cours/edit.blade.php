@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="matiere_id" class="form-label">Matière</label>
                             <select class="form-select" id="matiere_id" name="matiere_id">
                                 @foreach($matieres as $matiere)
@@ -50,11 +50,20 @@
                             </select>
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="type_cours" class="form-label">Type de cours</label>
                             <select class="form-select" id="classe" name="type_cours">
                                 <option @selected(old('type_cours', $cours->type_cours) == 'TD') value="TD">TD</option>
                                 <option @selected(old('type_cours', $cours->type_cours) == 'TP') value="TP">TP</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="ue_id" class="form-label">Ue</label>
+                            <select class="form-select" id="ue_id" name="ue_id">
+                                @foreach($ues as $ue)
+                                    <option @selected(old('ue_id', $cours->ue_id) == $ue->id) value="{{ $ue->id }}">{{ $ue->libelle }}</option>
+                                @endforeach
                             </select>
                         </div>
 

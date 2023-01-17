@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CoursesRequest;
 use App\Models\Enseignant;
 use App\Models\Matiere;
+use App\Models\Ue;
 
 class CoursEnseignantsController extends Controller
 {
     public function index(Enseignant $enseignant)
     {
         $cours = $enseignant->cours()->paginate(10);
+
         return view('pages.enseignants.cours.index', compact('cours', 'enseignant'));
     }
 
     public function create(Enseignant $enseignant)
     {
         $matieres = Matiere::all();
-        return view('pages.enseignants.cours.create', compact('enseignant', 'matieres'));
+        $ues = Ue::all();
+        return view('pages.enseignants.cours.create', compact('enseignant', 'matieres', 'ues'));
     }
 
     public function store(Enseignant $enseignant, CoursesRequest $request)
@@ -34,7 +37,8 @@ class CoursEnseignantsController extends Controller
     {
         $matieres = Matiere::all();
         $cours = $enseignant->cours()->findOrFail($cours_id);
-        return view('pages.enseignants.cours.edit', compact('enseignant', 'cours', 'matieres'));
+        $ues = Ue::all();
+        return view('pages.enseignants.cours.edit', compact('enseignant', 'cours', 'matieres', 'ues'));
     }
 
     public function update(Enseignant $enseignant, $id, CoursesRequest $request)

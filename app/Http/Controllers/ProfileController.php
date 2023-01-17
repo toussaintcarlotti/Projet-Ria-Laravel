@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filiere;
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -14,7 +15,8 @@ class ProfileController extends Controller
     public function edit($profile)
     {
         $profile = User::findOrFail($profile)->profile;
-        return view('pages.profiles.edit', compact('profile'));
+        $filieres = Filiere::all();
+        return view('pages.profiles.edit', compact('profile', 'filieres'));
     }
 
     public function update($profile)
