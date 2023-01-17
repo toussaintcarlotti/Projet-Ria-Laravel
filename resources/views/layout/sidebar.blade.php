@@ -69,7 +69,7 @@
                 </li>
             @endif
 
-            @if(auth()->user()->role->nom === 'directeur_etude' || auth()->user()->role->nom === 'directeur_departement')
+            @if(auth()->user()->status === 'enseignant')
                 <li class="nav-item nav-category">Gestion</li>
                 <li class="nav-item {{ active_class(['etudiants*']) }}">
                     <a href="#etudiant" class="nav-link" data-bs-toggle="collapse" role="button"
@@ -113,6 +113,13 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+                <li class="nav-item nav-category">Mon espace</li>
+                <li class="nav-item {{ active_class(['enseignants/*/emploi-du-temps']) }}">
+                    <a href="{{ route('teachers.edt', auth()->user()->profile) }}" class="nav-link">
+                        <i class="link-icon" data-feather="box"></i>
+                        <span class="link-title">Emploi du temps</span>
+                    </a>
                 </li>
             @endif
 

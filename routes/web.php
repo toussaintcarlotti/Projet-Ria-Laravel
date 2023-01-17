@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CoursEnseignantsController;
+use App\Http\Controllers\EdtEnseignantController;
 use App\Http\Controllers\EdtEtudiantController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
@@ -48,6 +49,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('etudiant/{etudiant}/')->name('students.')->group(function () {
         Route::get('notes', NotesEtudiantController::class)->name('notes');
 
+        // Edt (emploi du temps)
         Route::get('emploi-du-temps', [EdtEtudiantController::class, 'show'])->name('edt');
     });
 
@@ -69,6 +71,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             // Etudiants
             Route::get('etudiants', [EtudiantsEnseignantsController::class, 'index'])->name('students');
             Route::get('etudiants/{etudiant}', [EtudiantsEnseignantsController::class, 'show'])->name('students.show');
+
+            // Edt (emploi du temps)
+            Route::get('emploi-du-temps', [EdtEnseignantController::class, 'show'])->name('edt');
         });
 
         // Cours
