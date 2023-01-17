@@ -10,7 +10,7 @@ class EnseignantSeeder extends Seeder
     public function run()
     {
         Enseignant::factory()
-            ->times(50)
+            ->times(100)
             ->create();
     }
 }

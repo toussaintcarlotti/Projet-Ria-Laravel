@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div class="col-6 col-md-12 col-xl-7">
-                <div id="ordersChart" class="mt-md-3 mt-xl-0"></div>
+                <div id="etudiantFiliereChart" class="mt-md-3 mt-xl-0"></div>
               </div>
             </div>
           </div>

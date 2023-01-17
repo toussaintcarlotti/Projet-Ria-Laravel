@@ -9,8 +9,8 @@
                     <div class="row">
                         <div class="col-md-4 pe-md-0">
                             <div class="auth-side-wrapper"
-                                 style="background-image: url({{ url('https://via.placeholder.com/219x452') }})">
-
+                                 style="background-image: url({{ Storage::disk('public')->url('img/visuel_ENT_640241.png') }});
+                                        background-position: center;background-size: contain; background-repeat: no-repeat">
                             </div>
                         </div>
                         <div class="col-md-8 ps-md-0">

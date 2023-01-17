@@ -13,7 +13,7 @@ class CoursFactory extends Factory
     public function definition(): array
     {
         return [
-            'enseignant_id' => $this->faker->numberBetween(1, 50),
+            'enseignant_id' => $this->faker->numberBetween(1, 100),
             'matiere_id' => $this->faker->numberBetween(1,22),
             'ue_id' => $this->faker->numberBetween(1, 100),
             'horaire_debut' => $this->faker->time(),

@@ -10,7 +10,7 @@ class CoursSeeder extends Seeder
     public function run()
     {
         Cours::factory()
-            ->times(100)
+            ->times(250)
             ->create();
     }
 }

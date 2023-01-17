@@ -117,7 +117,7 @@
                 <li class="nav-item nav-category">Mon espace</li>
                 <li class="nav-item {{ active_class(['enseignants/*/emploi-du-temps']) }}">
                     <a href="{{ route('teachers.edt', auth()->user()->profile) }}" class="nav-link">
-                        <i class="link-icon" data-feather="box"></i>
+                        <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Emploi du temps</span>
                     </a>
                 </li>
@@ -127,13 +127,13 @@
                 <li class="nav-item nav-category">Mon espace</li>
                 <li class="nav-item {{ active_class(['etudiant/*/notes']) }}">
                     <a href="{{ route('students.notes', auth()->user()->profile) }}" class="nav-link">
-                        <i class="link-icon" data-feather="box"></i>
+                        <i class="link-icon" data-feather="inbox"></i>
                         <span class="link-title">Mes notes</span>
                     </a>
                 </li>
                 <li class="nav-item {{ active_class(['etudiant/*/emploi-du-temps']) }}">
                     <a href="{{ route('students.edt', auth()->user()->profile) }}" class="nav-link">
-                        <i class="link-icon" data-feather="box"></i>
+                        <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Emploi du temps</span>
                     </a>
                 </li>

@@ -10,7 +10,7 @@ class EtudiantSeeder extends Seeder
     public function run()
     {
         Etudiant::factory()
-            ->times(50)
+            ->times(400)
             ->create();
     }
 }

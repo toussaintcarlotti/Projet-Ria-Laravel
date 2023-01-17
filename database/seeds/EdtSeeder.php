@@ -10,7 +10,7 @@ class EdtSeeder extends Seeder
     public function run()
     {
         Edt::factory()
-            ->times(400)
+            ->times(1000)
             ->create();
     }
 }

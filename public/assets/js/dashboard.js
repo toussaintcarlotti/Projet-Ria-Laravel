@@ -721,5 +721,4 @@ $(function () {
     }
     // Cloud Storage Chart - END
 
-
 });

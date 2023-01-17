@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CoursEnseignantsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EdtEnseignantController;
 use App\Http\Controllers\EdtEtudiantController;
 use App\Http\Controllers\EnseignantsController;
@@ -35,9 +36,7 @@ Route::get('/register', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Droit : authentifié
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('home');
+    Route::get('/', DashboardController::class)->name('home');
 
     Route::get('dashboard-example', function () {
         return view('dashboard-example');
