@@ -59,7 +59,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: function () {
-                return  $this->etudiant ?? $this->enseignant ?? User::find($this->id);
+                return $this->etudiant ?? $this->enseignant ?? User::find($this->id);
             });
     }
 
@@ -67,7 +67,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: function () {
-                return  User::find($this->id);
+                return User::find($this->id);
             });
     }
 }

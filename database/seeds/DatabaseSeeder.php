@@ -6,7 +6,9 @@ use Database\Seeders\EnseignantSeeder;
 use Database\Seeders\EtudiantSeeder;
 use Database\Seeders\FiliereSeeder;
 use Database\Seeders\MatiereSeeder;
+use Database\Seeders\NoteSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\UeSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +28,8 @@ class DatabaseSeeder extends Seeder
             FiliereSeeder::class,
             MatiereSeeder::class,
             CoursSeeder::class,
+            UeSeeder::class,
+            NoteSeeder::class,
         ]);
     }
 }

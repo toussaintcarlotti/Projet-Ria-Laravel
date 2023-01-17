@@ -16,6 +16,7 @@ use App\Http\Controllers\CoursEnseignantsController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
 use App\Http\Controllers\EtudiantsEnseignantsController;
+use App\Http\Controllers\NotesEtudiantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -43,6 +44,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('profil/{profile}', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::put('profil/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
 
+    Route::get('etudiant/{etudiant}/notes', NotesEtudiantController::class)->name('students.notes');
+
     // Droit : Directeur departement
     Route::middleware(['directeur.departement'])->group(function () {
         // Etudiants
@@ -60,6 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
             // Etudiants
             Route::get('etudiants', [EtudiantsEnseignantsController::class, 'index'])->name('students');
+            Route::get('etudiants/{etudiant}', [EtudiantsEnseignantsController::class, 'show'])->name('students.show');
         });
 
         // Cours

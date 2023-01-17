@@ -73,12 +73,13 @@
                 <li class="nav-item nav-category">Gestion</li>
                 <li class="nav-item {{ active_class(['etudiants*']) }}">
                     <a href="#etudiant" class="nav-link" data-bs-toggle="collapse" role="button"
-                       aria-expanded="{{ is_active_route(['etudiants*']) }}" aria-controls="email">
+                       aria-expanded="{{ is_active_route(['etudiants*', 'enseignants/*/etudiants*']) }}"
+                       aria-controls="email">
                         <i class="link-icon" data-feather="user"></i>
                         <span class="link-title">Étudiants</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
                     </a>
-                    <div class="collapse {{ show_class(['etudiants*']) }}" id="etudiant">
+                    <div class="collapse {{ show_class(['etudiants*', 'enseignants/*/etudiants*']) }}" id="etudiant">
                         <ul class="nav sub-menu">
                             <li class="nav-item">
                                 <a href="{{ route('students.index') }}"
@@ -87,7 +88,7 @@
 
                             <li class="nav-item">
                                 <a href="{{ route('teachers.students', auth()->user()->profile) }}"
-                                   class="nav-link {{ active_class(['enseignants/*/etudiants']) }}">Mes étudiants</a>
+                                   class="nav-link {{ active_class(['enseignants/*/etudiants*']) }}">Mes étudiants</a>
                             </li>
                         </ul>
                     </div>
@@ -115,32 +116,42 @@
                 </li>
             @endif
 
+            @if(auth()->user()->role->nom === 'etudiant')
+                <li class="nav-item nav-category">Mon espace</li>
+                <li class="nav-item {{ active_class(['etudiant/*/notes']) }}">
+                    <a href="{{ route('students.notes', auth()->user()->profile) }}" class="nav-link">
+                        <i class="link-icon" data-feather="box"></i>
+                        <span class="link-title">Mes notes</span>
+                    </a>
+                </li>
+            @endif
+
         </ul>
     </div>
 </nav>
 {{--
 <nav class="settings-sidebar">
-    <div class="sidebar-body">
-        <a href="#" class="settings-sidebar-toggler">
-            <i data-feather="settings"></i>
-        </a>
-        <h6 class="text-muted mb-2">Sidebar:</h6>
-        <div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight"
-                           value="sidebar-light" checked>
-                    Light
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark"
-                           value="sidebar-dark">
-                    Dark
-                </label>
-            </div>
-        </div>
-    </div>
+<div class="sidebar-body">
+<a href="#" class="settings-sidebar-toggler">
+<i data-feather="settings"></i>
+</a>
+<h6 class="text-muted mb-2">Sidebar:</h6>
+<div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight"
+               value="sidebar-light" checked>
+        Light
+    </label>
+</div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark"
+               value="sidebar-dark">
+        Dark
+    </label>
+</div>
+</div>
+</div>
 </nav>
- --}}
+--}}

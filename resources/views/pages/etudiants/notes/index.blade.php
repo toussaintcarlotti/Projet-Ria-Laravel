@@ -4,12 +4,13 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Vos étudiants</h4>
+            <h4 class="mb-3 mb-md-0">Mes Notes</h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
 
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-12 col-xl-12 grid-margin stretch-card">
@@ -19,18 +20,25 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Filiere</th>
-                                <th></th>
+                                <th>Filière</th>
+                                <th>Ue</th>
+                                <th>Matière</th>
+                                <th>Enseignant</th>
+                                <th>Examen</th>
+                                <th>Note</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($etudiants as $etudiant)
+                            @foreach($notes as $note)
                                 <tr>
-                                    <td>{{ $etudiant->user->nom }}</td>
-                                    <td>{{ $etudiant->filiere->nom }}</td>
+                                    <td>{{ $note->cours->ue->filiere->nom }}</td>
+                                    <td>{{ $note->cours->ue->libelle }}</td>
+                                    <td>{{ $note->cours->matiere->libelle_matiere }}</td>
+                                    <td>{{ $note->cours->enseignant->user->nom . " " . $note->cours->enseignant->user->prenom}}</td>
+                                    <td>{{ $note->nom_examen }}</td>
                                     <td>
-                                        <a href="{{ route('teachers.students.show', [$enseignant, $etudiant]) }}" class="btn btn-primary">Voir</a>
+                                        <span class="text-primary fw-bold">{{ $note->note }} </span>
+                                        <span class="text-muted">/20</span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -38,7 +46,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $etudiants->links() }}
+                        {{ $notes->links() }}
                     </div>
                 </div>
             </div>
