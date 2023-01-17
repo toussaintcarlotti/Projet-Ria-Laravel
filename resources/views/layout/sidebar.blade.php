@@ -28,7 +28,7 @@
                 <li class="nav-item nav-category">Administration</li>
                 <li class="nav-item {{ active_class(['etudiants*']) }}">
                     <a href="#etudiant" class="nav-link" data-bs-toggle="collapse" role="button"
-                       aria-expanded="{{ is_active_route(['etudiants']) }}" aria-controls="email">
+                       aria-expanded="{{ is_active_route(['etudiants']) }}" aria-controls="etudiants">
                         <i class="link-icon" data-feather="user"></i>
                         <span class="link-title">Étudiants</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
@@ -49,7 +49,7 @@
 
                 <li class="nav-item {{ active_class(['enseignants*']) }}">
                     <a href="#enseignant" class="nav-link" data-bs-toggle="collapse" role="button"
-                       aria-expanded="{{ is_active_route(['enseignants*']) }}" aria-controls="email">
+                       aria-expanded="{{ is_active_route(['enseignants*']) }}" aria-controls="enseignants">
                         <i class="link-icon" data-feather="users"></i>
                         <span class="link-title">Enseignants</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
@@ -67,6 +67,27 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item {{ active_class(['filieres*']) }}">
+                    <a href="#filiere" class="nav-link" data-bs-toggle="collapse" role="button"
+                       aria-expanded="{{ is_active_route(['filieres*']) }}" aria-controls="filieres">
+                        <i class="link-icon" data-feather="feather"></i>
+                        <span class="link-title">Filières</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse {{ show_class(['filieres*']) }}" id="filiere">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{ route('filieres.index') }}"
+                                   class="nav-link {{ active_class(['filieres']) }}">Toutes les filieres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('filieres.create') }}"
+                                   class="nav-link {{ active_class(['filieres/créer']) }}">Ajouter une filieres</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             @endif
 
             @if(auth()->user()->status === 'enseignant')
@@ -74,7 +95,7 @@
                 <li class="nav-item {{ active_class(['etudiants*']) }}">
                     <a href="#etudiant" class="nav-link" data-bs-toggle="collapse" role="button"
                        aria-expanded="{{ is_active_route(['etudiants*', 'enseignants/*/etudiants*']) }}"
-                       aria-controls="email">
+                       aria-controls="etudiants">
                         <i class="link-icon" data-feather="user"></i>
                         <span class="link-title">Étudiants</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>
@@ -93,10 +114,9 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item nav-category">Cours</li>
                 <li class="nav-item {{ active_class(['*cours*']) }}">
                     <a href="#cours" class="nav-link" data-bs-toggle="collapse" role="button"
-                       aria-expanded="{{ is_active_route(['*cours*']) }}" aria-controls="email">
+                       aria-expanded="{{ is_active_route(['*cours*']) }}" aria-controls="cours">
                         <i class="link-icon" data-feather="book"></i>
                         <span class="link-title">Cours</span>
                         <i class="link-arrow" data-feather="chevron-down"></i>

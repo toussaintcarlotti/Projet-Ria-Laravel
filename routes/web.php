@@ -19,6 +19,7 @@ use App\Http\Controllers\EdtEtudiantController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
 use App\Http\Controllers\EtudiantsEnseignantsController;
+use App\Http\Controllers\FilieresController;
 use App\Http\Controllers\NotesEtudiantController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('emploi-du-temps', [EdtEtudiantController::class, 'show'])->name('edt');
     });
 
+    // Filiere
+    Route::get('filieres', [FilieresController::class, 'index'])->name('filieres.index');
+
     // Droit : Directeur departement
     Route::middleware(['directeur.departement'])->group(function () {
         // Etudiants
@@ -82,7 +86,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         // Droit : Directeur etude
         Route::middleware(['directeur.etude'])->group(function () {
-            // Etudiants
+            // Filiere
+            Route::get('filieres/créer', [FilieresController::class, 'create'])->name('filieres.create');
+            Route::post('filieres', [FilieresController::class, 'store'])->name('filieres.store');
 
 
 

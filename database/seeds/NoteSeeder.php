@@ -10,7 +10,7 @@ class NoteSeeder extends Seeder
     public function run()
     {
         Note::factory()
-            ->times(300)
+            ->times(1000)
             ->create();
     }
 }
