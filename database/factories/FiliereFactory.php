@@ -14,8 +14,16 @@ class FiliereFactory extends Factory
 
     public function definition(): array
     {
+        $niveau = $this->faker->randomElement(['Licence', 'Master', 'Doctorat']);
+        if ($niveau === 'Licence') {
+            $nombre_annee = 3;
+        } elseif ($niveau === 'Master') {
+            $nombre_annee = 2;
+        } else {
+            $nombre_annee = 3;
+        }
+
         $date = Carbon::now();
-        $nb_annee = $this->faker->numberBetween(1, 5);
         $responsable_id = $this->faker->numberBetween(1, 20);
         Enseignant::find($responsable_id)->update([
             'responsable_filiere_id' => self::$i,
@@ -28,10 +36,10 @@ class FiliereFactory extends Factory
                 'Economie', 'Sciences Politiques', 'Psychologie', 'Sociologie', 'Médecine', 'Pharmacie',
                 'Kinésithérapie', 'Odontologie']),
             'description' => $this->faker->text(100),
-            'niveau' => $this->faker->randomElement(['Licence', 'Master', 'Doctorat']),
+            'niveau' => $niveau,
             'date_debut' => $date,
-            'date_fin' => $date->addYears($nb_annee),
-            'nombre_annee' => $nb_annee,
+            'date_fin' => $date->addYears($nombre_annee),
+            'nombre_annee' => $nombre_annee,
         ];
     }
 }

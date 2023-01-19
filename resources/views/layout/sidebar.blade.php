@@ -114,6 +114,30 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item {{ active_class(['filieres*']) }}">
+                    <a href="#filiere" class="nav-link" data-bs-toggle="collapse" role="button"
+                       aria-expanded="{{ is_active_route(['filieres*']) }}" aria-controls="filieres">
+                        <i class="link-icon" data-feather="feather"></i>
+                        <span class="link-title">Filières</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse {{ show_class(['filieres*']) }}" id="filiere">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{ route('filieres.index') }}"
+                                   class="nav-link {{ active_class(['filieres']) }}">Toutes les filieres</a>
+                            </li>
+                            @if(auth()->user()->role->nom === "directeur_etude")
+
+                                <li class="nav-item">
+                                    <a href="{{ route('filieres.create') }}"
+                                       class="nav-link {{ active_class(['filieres/créer']) }}">Ajouter une filieres</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item {{ active_class(['*cours*']) }}">
                     <a href="#cours" class="nav-link" data-bs-toggle="collapse" role="button"
                        aria-expanded="{{ is_active_route(['*cours*']) }}" aria-controls="cours">

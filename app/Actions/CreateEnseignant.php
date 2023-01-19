@@ -26,6 +26,10 @@ class CreateEnseignant extends Action
             'responsabilite_enseignant' => $input['responsabilite_enseignant'],
         ]);
 
+        $user->update([
+            'profile_id' => $enseignant->id,
+        ]);
+
         return $enseignant;
     }
 }

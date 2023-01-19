@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Enseignant extends Model
 {
@@ -17,9 +18,9 @@ class Enseignant extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function filiereResponsable(): BelongsTo
+    public function filiereResponsable(): HasOne
     {
-        return $this->belongsTo(Filiere::class, 'responsable_filiere_id');
+        return $this->hasOne(Filiere::class, 'responsable_id');
     }
 
     public function cours(): HasMany

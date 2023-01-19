@@ -32,6 +32,8 @@
     <!-- end common css -->
 
     @stack('style')
+
+    @livewireStyles
 </head>
 <body data-base-url="{{url('/')}}">
 
@@ -79,5 +81,7 @@
 <!-- end common js -->
 
 @stack('custom-scripts')
+
+@livewireScripts
 </body>
 </html>

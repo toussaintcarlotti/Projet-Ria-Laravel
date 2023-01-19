@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -13,9 +14,9 @@ class Filiere extends Model
 
     protected $fillable = ['responsable_id', 'nom', 'description', 'niveau', 'nombre_annee', 'date_debut', 'date_fin'];
 
-    public function responsable(): HasOne
+    public function responsable(): BelongsTo
     {
-        return $this->hasOne(Enseignant::class, 'responsable_id');
+        return $this->belongsTo(Enseignant::class, 'responsable_id');
     }
 
     public function etudiants(): HasMany

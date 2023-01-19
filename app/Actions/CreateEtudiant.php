@@ -30,6 +30,10 @@ class CreateEtudiant extends Action
             'diplome_etudiant' => $input['diplome_etudiant'],
         ]);
 
+        $user->update([
+            'profile_id' => $etudiant->id,
+        ]);
+
         return $etudiant;
     }
 }

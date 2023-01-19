@@ -4,61 +4,83 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Filières</h4>
+            <h4 class="mb-3 mb-md-0">Filière <span class="text-info">{{ $filiere->nom }}</span></h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            @if (auth()->user()->role->nom === 'admin')
-                <a href="{{ route('filieres.create') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-                    <i class="btn-icon-prepend" data-feather="plus"></i>
-                    Ajouter une filière
-                </a>
-            @endif
+            <div>
 
+            </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-12 col-xl-12 grid-margin stretch-card">
             <div class="card overflow-hidden">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <h4>Responsable: </h4>
+                            <p>{{ $filiere->responsable->user->nom }} {{ $filiere->responsable->user->prenom }}</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h4>Nombre d'étudiants: </h4>
+                            <p>{{ $filiere->etudiants->count() }}</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h4>Niveau: </h4>
+                            <p>{{ $filiere->niveau }}</p>
+                        </div>
+
+                        <div>
+                            <h4>Description</h4>
+                            <p>{{ $filiere->description }}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- row -->
+
+    <div class="row">
+        <div class="col-12 col-xl-12 grid-margin stretch-card">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <h4 class="text-center">Ue de la filière</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Description</th>
-                                <th>Niveau</th>
                                 @if (auth()->user()->role->nom === 'admin')
-                                    <th></th>
+                                    <th class="col-1"></th>
                                 @endif
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($filieres as $filiere)
+                            @foreach($filiere->ues as $ue)
                                 <tr>
-                                    <td>{{ $filiere->nom }}</td>
-                                    <td>{{ Str::limit($filiere->description, 40) }}</td>
-                                    <td>{{ $filiere->niveau }}</td>
-
-                                    @if (auth()->user()->role->nom === 'admin' || auth()->user()->role->nom === 'directeur_etude')
+                                    <td>{{ $ue->libelle }}</td>
+                                    <td>{{ Str::limit($ue->description, 40) }}</td>
+                                    @if (auth()->user()->role->nom === 'admin')
                                         <td>
-                                            <a href="{{ route('filieres.show', $filiere) }}"
+                                            <a href="{{ route('ues.show', $ue) }}"
                                                class="btn btn-info btn-icon-text mb-2 mb-md-0">
                                                 <i class="btn-icon-prepend" data-feather="eye"></i>
                                                 Voir
                                             </a>
-                                            <a href="{{ route('filieres.edit', $filiere) }}"
+                                            <a href="{{ route('ues.edit', $ue) }}"
                                                class="btn btn-primary btn-icon-text">
                                                 <i class="btn-icon-prepend" data-feather="edit"></i>
                                                 Modifier
                                             </a>
-                                            <form action="{{ route('filieres.destroy', $filiere) }}" method="post"
+                                            <form action="{{ route('ues.destroy', $ue) }}" method="post"
                                                   class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-icon-text">
-                                                    <i class="btn-icon-prepend" data-feather="trash"></i>
+                                                    <i class="btn-icon-prepend" data-feather="trash-2"></i>
                                                     Supprimer
                                                 </button>
                                             </form>
@@ -69,13 +91,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $filieres->links() }}
-                    </div>
+
                 </div>
             </div>
         </div>
-    </div> <!-- row -->
+    </div>
 
 @endsection
 

@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\CoursController;
 use App\Http\Controllers\CoursEnseignantsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EdtEnseignantController;
@@ -22,6 +21,7 @@ use App\Http\Controllers\EtudiantsEnseignantsController;
 use App\Http\Controllers\FilieresController;
 use App\Http\Controllers\NotesEtudiantController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
@@ -55,9 +55,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Filiere
     Route::get('filieres', [FilieresController::class, 'index'])->name('filieres.index');
+    Route::get('filiere/{filiere}', [FilieresController::class, 'show'])->name('filieres.show');
 
-    // Droit : Directeur departement
-    Route::middleware(['directeur.departement'])->group(function () {
+    // Ue
+    Route::get('ues', [UesController::class, 'index'])->name('ues.index');
+    Route::get('ue/{ue}', [UesController::class, 'show'])->name('ues.show');
+
+    // Droit : Enseignant
+    Route::middleware(['enseignant'])->group(function () {
         // Etudiants
         Route::get('etudiants', [EtudiantsController::class, 'index'])->name('students.index');
 
@@ -79,40 +84,51 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('emploi-du-temps', [EdtEnseignantController::class, 'show'])->name('edt');
         });
 
-        // Cours
-        Route::get('cours', [CoursController::class, 'index'])->name('courses.index');
-        Route::get('cours/créer', [CoursController::class, 'create'])->name('courses.create');
+        // Droit : Directeur departement
+        Route::middleware(['directeur.departement'])->group(function () {
 
-
-        // Droit : Directeur etude
-        Route::middleware(['directeur.etude'])->group(function () {
-            // Filiere
-            Route::get('filieres/créer', [FilieresController::class, 'create'])->name('filieres.create');
-            Route::post('filieres', [FilieresController::class, 'store'])->name('filieres.store');
-
-
-
-            // Droit : Admin
-            Route::middleware(['admin'])->group(function () {
-                // Etudiants
-                Route::prefix('etudiants')->name('students.')->group(function () {
-                    Route::get('créer', [EtudiantsController::class, 'create'])->name('create');
-                    Route::post('', [EtudiantsController::class, 'store'])->name('store');
-                    Route::get('{etudiant}', [EtudiantsController::class, 'edit'])->name('edit');
-                    Route::put('{etudiant}', [EtudiantsController::class, 'update'])->name('update');
-                    Route::delete('{etudiant}', [EtudiantsController::class, 'destroy'])->name('destroy');
+            // Droit : Directeur etude
+            Route::middleware(['directeur.etude'])->group(function () {
+                // Filiere
+                Route::prefix('filieres/')->name('filieres.')->group(function () {
+                    Route::get('créer', [FilieresController::class, 'create'])->name('create');
+                    Route::post('', [FilieresController::class, 'store'])->name('store');
+                    Route::get('{filiere}/modifier', [FilieresController::class, 'edit'])->name('edit');
+                    Route::put('{filiere}/modifier', [FilieresController::class, 'update'])->name('update');
+                    Route::delete('{filiere}/supprimer', [FilieresController::class, 'destroy'])->name('destroy');
                 });
 
-                // Enseignants
-                Route::prefix('enseignants')->name('teachers.')->group(function () {
-                    Route::get('', [EnseignantsController::class, 'index'])->name('index');
-                    Route::get('créer', [EnseignantsController::class, 'create'])->name('create');
-                    Route::post('', [EnseignantsController::class, 'store'])->name('store');
-                    Route::get('{enseignant}', [EnseignantsController::class, 'edit'])->name('edit');
-                    Route::put('{enseignant}', [EnseignantsController::class, 'update'])->name('update');
-                    Route::delete('{enseignant}', [EnseignantsController::class, 'destroy'])->name('destroy');
+                // Ue
+                Route::prefix('ues/')->name('ues.')->group(function () {
+                    Route::get('créer', [UesController::class, 'create'])->name('ues.create');
+                    Route::post('', [UesController::class, 'store'])->name('store');
+                    Route::get('{ue}/modifier', [UesController::class, 'edit'])->name('edit');
+                    Route::put('{ue}/modifier', [UesController::class, 'update'])->name('update');
+                    Route::delete('{ue}/supprimer', [UesController::class, 'destroy'])->name('destroy');
                 });
 
+                // Droit : Admin
+                Route::middleware(['admin'])->group(function () {
+                    // Etudiants
+                    Route::prefix('etudiants')->name('students.')->group(function () {
+                        Route::get('créer', [EtudiantsController::class, 'create'])->name('create');
+                        Route::post('', [EtudiantsController::class, 'store'])->name('store');
+                        Route::get('{etudiant}', [EtudiantsController::class, 'edit'])->name('edit');
+                        Route::put('{etudiant}', [EtudiantsController::class, 'update'])->name('update');
+                        Route::delete('{etudiant}', [EtudiantsController::class, 'destroy'])->name('destroy');
+                    });
+
+                    // Enseignants
+                    Route::prefix('enseignants')->name('teachers.')->group(function () {
+                        Route::get('', [EnseignantsController::class, 'index'])->name('index');
+                        Route::get('créer', [EnseignantsController::class, 'create'])->name('create');
+                        Route::post('', [EnseignantsController::class, 'store'])->name('store');
+                        Route::get('{enseignant}', [EnseignantsController::class, 'edit'])->name('edit');
+                        Route::put('{enseignant}', [EnseignantsController::class, 'update'])->name('update');
+                        Route::delete('{enseignant}', [EnseignantsController::class, 'destroy'])->name('destroy');
+                    });
+
+                });
             });
         });
     });

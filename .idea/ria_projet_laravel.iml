@@ -129,6 +129,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/attributes" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lorisleiva/laravel-actions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lorisleiva/lody" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/livewire/livewire" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
