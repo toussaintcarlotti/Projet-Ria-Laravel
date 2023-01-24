@@ -9,7 +9,7 @@ class EnseignantMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->status !== 'enseignant' && auth()->user()->status !== 'admin') {
+        if (auth()->user()->status !== 'enseignant' && auth()->user()->role->nom !== 'admin') {
             return redirect()->route('home');
         }
         return $next($request);

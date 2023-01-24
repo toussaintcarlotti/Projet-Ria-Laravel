@@ -1,9 +1,7 @@
 // sample calendar events data
 
+var Draggable = FullCalendar.Draggable;
 var calendarEl = document.getElementById('fullcalendar');
-
-var curYear = moment().format('YYYY');
-var curMonth = moment().format('MM');
 
 // Calendar Event Source
 var calendarEvents = {

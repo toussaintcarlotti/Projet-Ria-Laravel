@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Edt;
 use App\Models\Etudiant;
+use App\Models\Filiere;
 use Carbon\Carbon;
 
-class EdtEtudiantController extends Controller
+class EdtFiliereController extends Controller
 {
-    public function show(Etudiant $etudiant)
+    public function show(Filiere $filiere)
     {
-        $cours_id = $etudiant->filiere->ues->map(function ($ue) {
+        $cours_id = $filiere->ues->map(function ($ue) {
             return $ue->cours->pluck('id');
         })->flatten();
         $edts = Edt::whereIn('cours_id', $cours_id)->get();
@@ -21,6 +22,17 @@ class EdtEtudiantController extends Controller
             $edt['description'] = $edt->information;
         }
 
-        return view('pages.etudiants.edts.show', compact('edts', 'etudiant'));
+        return view('pages.filieres.edts.show', compact('edts'));
+    }
+
+    public function create()
+    {
+
+        return view('pages.filieres.edts.create');
+    }
+
+    public function store()
+    {
+
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\CoursEnseignantsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EdtEnseignantController;
 use App\Http\Controllers\EdtEtudiantController;
+use App\Http\Controllers\EdtFiliereController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;
 use App\Http\Controllers\EtudiantsEnseignantsController;
@@ -48,10 +49,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::prefix('etudiant/{etudiant}/')->name('students.')->group(function () {
         Route::get('notes', NotesEtudiantController::class)->name('notes');
-
-        // Edt (emploi du temps)
-        Route::get('emploi-du-temps', [EdtEtudiantController::class, 'show'])->name('edt');
     });
+
+    Route::get('filieres/{filiere}/emploi-du-temps', [EdtFiliereController::class, 'show'])->name('filieres.edt');
 
     // Filiere
     Route::get('filieres', [FilieresController::class, 'index'])->name('filieres.index');
@@ -82,6 +82,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
             // Edt (emploi du temps)
             Route::get('emploi-du-temps', [EdtEnseignantController::class, 'show'])->name('edt');
+            Route::get('emploi-du-temps/créer', [EdtEnseignantController::class, 'create'])->name('edt.create');
+            Route::post('emploi-du-temps/créer', [EdtEnseignantController::class, 'store'])->name('edt.store');
         });
 
         // Droit : Directeur departement
@@ -96,7 +98,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
                     Route::get('{filiere}/modifier', [FilieresController::class, 'edit'])->name('edit');
                     Route::put('{filiere}/modifier', [FilieresController::class, 'update'])->name('update');
                     Route::delete('{filiere}/supprimer', [FilieresController::class, 'destroy'])->name('destroy');
+
+                    Route::get('{filiere}/emploi-du-temps/créer', [EdtFiliereController::class, 'create'])->name('edt.create');
+                    Route::post('{filiere}/emploi-du-temps/créer', [EdtFiliereController::class, 'store'])->name('edt.store');
                 });
+
 
                 // Ue
                 Route::prefix('ues/')->name('ues.')->group(function () {

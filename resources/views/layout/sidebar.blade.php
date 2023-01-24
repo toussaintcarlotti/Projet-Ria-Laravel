@@ -175,8 +175,9 @@
                         <span class="link-title">Mes notes</span>
                     </a>
                 </li>
-                <li class="nav-item {{ active_class(['etudiant/*/emploi-du-temps']) }}">
-                    <a href="{{ route('students.edt', auth()->user()->profile) }}" class="nav-link">
+
+                <li class="nav-item {{ active_class(['filieres/*/emploi-du-temps']) }}">
+                    <a href="{{ route('filieres.edt', auth()->user()->profile->filiere) }}" class="nav-link">
                         <i class="link-icon" data-feather="calendar"></i>
                         <span class="link-title">Emploi du temps</span>
                     </a>
