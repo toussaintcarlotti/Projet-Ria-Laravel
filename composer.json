@@ -19,8 +19,7 @@
         "lorisleiva/laravel-actions": "^2.4"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
-        ,
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/attributes": "^2.0",
         "laravel-lang/lang": "^12.11",
@@ -29,6 +28,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^1.0"
     },
     "config": {
