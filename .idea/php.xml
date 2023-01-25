@@ -134,6 +134,8 @@
       <path value="$PROJECT_DIR$/vendor/lorisleiva/laravel-actions" />
       <path value="$PROJECT_DIR$/vendor/lorisleiva/lody" />
       <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
+      <path value="$PROJECT_DIR$/vendor/inspector-apm/inspector-laravel" />
+      <path value="$PROJECT_DIR$/vendor/inspector-apm/inspector-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
