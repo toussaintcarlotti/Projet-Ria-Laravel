@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,6 +27,15 @@ class Enseignant extends Model
     public function cours(): HasMany
     {
         return $this->hasMany(Cours::class);
+    }
+
+
+    /******************************
+     *** HELPERS
+     ******************************/
+    public function getFormatedEdtAttribute(): \Illuminate\Support\Collection
+    {
+        return format_edt(Edt::enseignant($this)->get());
     }
 
 }

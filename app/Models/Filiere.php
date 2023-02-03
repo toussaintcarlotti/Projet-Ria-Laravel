@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Filiere extends Model
 {
@@ -30,15 +29,12 @@ class Filiere extends Model
         return $this->hasMany(Ue::class);
     }
 
-    public function edt(): Attribute
+
+    /******************************
+     *** HELPERS
+     ******************************/
+    public function getFormatedEdtAttribute(): \Illuminate\Support\Collection
     {
-        return Attribute::make(
-            get: function () {
-                return Edt::whereIn('cours_id', $this->ues->map(function ($ue) {
-                    return $ue->cours->pluck('id');
-                })->flatten())->get();
-            },
-            set: fn($value) => $value,
-        );
+        return format_edt(Edt::filiere($this)->get());
     }
 }

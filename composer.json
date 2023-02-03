@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "guzzlehttp/guzzle": "^7.5.0",
         "inspector-apm/inspector-laravel": "^4.7",
         "laravel/fortify": "^v1.16.0",
