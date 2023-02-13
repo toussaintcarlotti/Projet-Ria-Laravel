@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,5 +37,12 @@ class Filiere extends Model
     public function getFormatedEdtAttribute(): \Illuminate\Support\Collection
     {
         return format_edt(Edt::filiere($this)->get());
+    }
+
+    public function edt(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->ues->map(fn($ue) => $ue->cours->map(fn($cours) => $cours->edts))->flatten(2),
+        );
     }
 }
