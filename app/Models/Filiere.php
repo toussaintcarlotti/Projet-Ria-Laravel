@@ -42,7 +42,10 @@ class Filiere extends Model
     public function edt(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->ues->map(fn($ue) => $ue->cours->map(fn($cours) => $cours->edts))->flatten(2),
+            get: fn($value) => Edt::join('cours', 'cours.id', '=', 'edts.cours_id')
+                ->join('ues', 'ues.id', '=', 'cours.ue_id')
+                ->where('ues.filiere_id', $this->id)
+                ->get(),
         );
     }
 }

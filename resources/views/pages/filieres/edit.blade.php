@@ -11,7 +11,7 @@
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div>
-                @if($filiere->edt->count() > 0)
+                @if($filiere->edt->count() === 0)
                     <a href="{{ route('filieres.edt.create', $filiere) }}" class="btn btn-secondary">Créer un emploi du temps</a>
                 @endif
             </div>

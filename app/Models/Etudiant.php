@@ -13,6 +13,8 @@ class Etudiant extends Model
 
     protected $fillable = ['user_id', 'filiere_id', 'diplome_etudiant'];
 
+    protected $with = ['user', 'filiere'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

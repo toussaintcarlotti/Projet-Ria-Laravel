@@ -12,7 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Enseignant extends Model
 {
     use HasFactory;
+
     protected $fillable = ['user_id', 'filiere_id', 'responsabilite_enseignant'];
+
+    protected $with = ['user', 'filiereResponsable'];
 
     public function user(): BelongsTo
     {
