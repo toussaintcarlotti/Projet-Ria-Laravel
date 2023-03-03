@@ -14,7 +14,6 @@
 use App\Http\Controllers\CoursEnseignantsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EdtEnseignantController;
-use App\Http\Controllers\EdtEtudiantController;
 use App\Http\Controllers\EdtFiliereController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\EtudiantsController;

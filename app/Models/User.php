@@ -40,6 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /***********************
+     * RELATIONSHIPS
+     ***********************/
+
     public function enseignant(): HasOne
     {
         return $this->hasOne(Enseignant::class);
@@ -55,6 +59,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    /***********************
+     * HELPERS
+     ***********************/
     public function profile(): Attribute
     {
         return Attribute::make(
@@ -69,5 +76,12 @@ class User extends Authenticatable
             get: function () {
                 return User::find($this->id);
             });
+    }
+
+    public function isAdmin(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->role->nom === 'admin',
+        );
     }
 }

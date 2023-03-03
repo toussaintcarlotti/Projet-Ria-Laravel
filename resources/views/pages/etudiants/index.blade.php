@@ -1,22 +1,19 @@
 @extends('layout.master')
 
-
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Étudiants</h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            @if (auth()->user()->role->nom === 'admin')
+            @if (auth()->user()->isAdmin())
                 <a href="{{ route('students.create') }}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
                     <i class="btn-icon-prepend" data-feather="plus"></i>
                     Ajouter un étudiant
                 </a>
             @endif
-
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-12 col-xl-12 grid-margin stretch-card">
@@ -31,8 +28,8 @@
                                 <th>Email</th>
                                 <th>Diplôme</th>
                                 <th>Filière</th>
-                                @if (auth()->user()->role->nom === 'admin')
-                                    <th></th>
+                                @if (auth()->user()->isAdmin())
+                                    <th class="col-1"></th>
                                 @endif
                             </tr>
                             </thead>
@@ -44,7 +41,7 @@
                                     <td>{{ $etudiant->user->email }}</td>
                                     <td>{{ $etudiant->diplome_etudiant }}</td>
                                     <td>{{ $etudiant->filiere?->nom }}</td>
-                                    @if (auth()->user()->role->nom === 'admin')
+                                    @if (auth()->user()->isAdmin())
                                         <td>
                                             <a href="{{ route('students.edit', $etudiant->id) }}"
                                                class="btn btn-primary btn-icon-text mb-2 mb-md-0">
@@ -73,7 +70,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- row -->
+    </div>
 
 @endsection
 

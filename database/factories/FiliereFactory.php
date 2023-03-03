@@ -25,9 +25,6 @@ class FiliereFactory extends Factory
 
         $date = Carbon::now();
         $responsable_id = $this->faker->numberBetween(1, 20);
-        Enseignant::find($responsable_id)->update([
-            'responsable_filiere_id' => self::$i,
-        ]);
         self::$i += 1;
         return [
             'responsable_id' => $responsable_id,

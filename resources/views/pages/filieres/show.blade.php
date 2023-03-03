@@ -70,20 +70,6 @@
                                                 <i class="btn-icon-prepend" data-feather="eye"></i>
                                                 Voir
                                             </a>
-                                            <a href="{{ route('ues.edit', $ue) }}"
-                                               class="btn btn-primary btn-icon-text">
-                                                <i class="btn-icon-prepend" data-feather="edit"></i>
-                                                Modifier
-                                            </a>
-                                            <form action="{{ route('ues.destroy', $ue) }}" method="post"
-                                                  class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-icon-text">
-                                                    <i class="btn-icon-prepend" data-feather="trash-2"></i>
-                                                    Supprimer
-                                                </button>
-                                            </form>
                                         </td>
                                     @endif
                                 </tr>

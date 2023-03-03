@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div>
-
+                <a href="{{ route('teachers.edt', $enseignant) }}" class="btn btn-bitbucket">Emploi du temps</a>
             </div>
         </div>
     </div>

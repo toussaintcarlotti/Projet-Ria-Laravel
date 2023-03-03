@@ -16,6 +16,7 @@ function show_class($path) {
 }
 
 function format_edt(Collection $edt) {
+    $edt->load('cours.matiere');
     foreach ($edt as $class) {
         $class['start'] = $class->date_debut;
         $class['end'] = $class->date_fin;
