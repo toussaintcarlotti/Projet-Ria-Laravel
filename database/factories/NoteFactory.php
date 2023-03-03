@@ -15,12 +15,14 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         $etudiant = Etudiant::find($this->faker->numberBetween(1, 400));
+        $etudiant->load('filiere.ues', 'filiere.ues.cours');
         $ue = $etudiant->filiere->ues->random();
         $cours = $ue?->cours->first();
 
 
         while ($cours === null || $etudiant === null) {
             $etudiant = Etudiant::find($this->faker->numberBetween(1, 400));
+            $etudiant->load('filiere.ues', 'filiere.ues.cours');
             $ue = $etudiant->filiere->ues->random();
             $cours = $ue?->cours->first();
         }

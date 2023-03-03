@@ -30,7 +30,7 @@
                                 <th>Description</th>
                                 <th>Niveau</th>
                                 @if (auth()->user()->role->nom === 'admin')
-                                    <th></th>
+                                    <th class="col-1"></th>
                                 @endif
                             </tr>
                             </thead>

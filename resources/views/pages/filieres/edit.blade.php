@@ -7,7 +7,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Modifier la filière</h4>
+            <h4 class="mb-3 mb-md-0">Modifier la filière <span class="text-info">{{ $filiere->nom }}</span></h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div>
@@ -46,8 +46,9 @@
                                 <label for="responsable_id" class="form-label">Responsable</label>
                                 <select class="form-select" id="responsable_id" name="responsable_id">
                                     <option value=""></option>
+                                    <option @selected(!old('responsable_id')) value="{{ $filiere->responsable_id }}">{{ $filiere->responsable->user->nom }} {{ $filiere->responsable->user->prenom }}</option>
                                     @foreach($enseignants as $enseignant)
-                                        <option @selected(old('responsable_id', $filiere->responsable_id) == $enseignant->id) value="{{ $enseignant->id }}">{{ $enseignant->user->nom }} {{ $enseignant->user->prenom }}</option>
+                                        <option @selected(old('responsable_id') === $enseignant->id) value="{{ $enseignant->id }}">{{ $enseignant->user->nom }} {{ $enseignant->user->prenom }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -81,6 +82,10 @@
             </div>
         </div> <!-- row -->
 
+        <div class="d-flex justify-content-end mb-4">
+            <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Enregistrer</button>
+        </div>
+
         <div class="row">
             <div class="col-12 col-xl-12 grid-margin stretch-card ">
                 <div class="card overflow-hidden">
@@ -90,9 +95,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Enregistrer</button>
         </div>
     </form>
 

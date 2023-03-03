@@ -7,7 +7,7 @@
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div>
-
+                <a href="{{ route('filieres.edt', $etudiant->filiere) }}" class="btn btn-bitbucket">Emploi du temps</a>
             </div>
         </div>
     </div>
@@ -28,12 +28,14 @@
                         <div class="col-md-6 mb-3">
                             <label for="prenom" class="form-label">Prénom</label>
                             <input type="text" class="form-control" id="prenom"
-                                   value="{{ old('prenom', $etudiant->user->prenom) }}" placeholder="prenom" name="prenom">
+                                   value="{{ old('prenom', $etudiant->user->prenom) }}" placeholder="prenom"
+                                   name="prenom">
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label for="diplome_etudiant" class="form-label">Diplome étudiant</label>
-                            <input value="{{ old('diplome_etudiant', $etudiant->diplome_etudiant) }}" type="text" class="form-control"
+                            <input value="{{ old('diplome_etudiant', $etudiant->diplome_etudiant) }}" type="text"
+                                   class="form-control"
                                    id="diplome_etudiant" placeholder="Diplome" name="diplome_etudiant">
                         </div>
 
@@ -41,20 +43,23 @@
                             <label for="filiere_id" class="form-label">Filiere</label>
                             <select class="form-select" id="filiere_id" name="filiere_id">
                                 @foreach($filieres as $filiere)
-                                    <option @selected(old('filiere_id', $etudiant->filiere_id) == $filiere->id) value="{{ $filiere->id }}">{{ $filiere->nom }}</option>
+                                    <option
+                                        @selected(old('filiere_id', $etudiant->filiere_id) == $filiere->id) value="{{ $filiere->id }}">{{ $filiere->nom }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label for="mail_univ" class="form-label">Email université</label>
-                            <input value="{{ old('mail_univ', $etudiant->user->mail_univ) }}" type="email" class="form-control" id="mail_univ"
+                            <input value="{{ old('mail_univ', $etudiant->user->mail_univ) }}" type="email"
+                                   class="form-control" id="mail_univ"
                                    placeholder="Email" name="mail_univ">
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label for="tel" class="form-label">Téléphone</label>
-                            <input value="{{ old('tel', $etudiant->user->tel) }}" type="text" class="form-control" id="tel"
+                            <input value="{{ old('tel', $etudiant->user->tel) }}" type="text" class="form-control"
+                                   id="tel"
                                    placeholder="Téléphone" name="tel">
                         </div>
 

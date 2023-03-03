@@ -19,7 +19,7 @@ class FilieresController extends Controller
 
     public function create()
     {
-        $enseignants = Enseignant::all()->sortBy('user.nom');
+        $enseignants = Enseignant::notResponsable()->get()->sortBy('user.nom');
         $ues = UE::where('filiere_id', null)->get()->sortBy('nom');
         return view('pages.filieres.create', compact('enseignants', 'ues'));
     }
@@ -35,9 +35,9 @@ class FilieresController extends Controller
             $nombre_annee = 3;
         }
 
-        Filiere::create(array_merge($request->validated(), ['nombre_annee' => $nombre_annee]));
+        $filiere = Filiere::create(array_merge($request->validated(), ['nombre_annee' => $nombre_annee]));
 
-        return redirect()->route('filieres.index')->with('success', 'Filière ajoutée avec succès');
+        return redirect()->route('filieres.edit', $filiere)->with('success', 'Filière ajoutée avec succès');
     }
 
     public function show(Filiere $filiere)
@@ -47,7 +47,7 @@ class FilieresController extends Controller
 
     public function edit(Filiere $filiere)
     {
-        $enseignants = Enseignant::all()->sortBy('user.nom');
+        $enseignants = Enseignant::notResponsable()->get()->sortBy('user.nom');
         $ues = UE::all()->firstWhere('filiere_id', $filiere->id);
         return view('pages.filieres.edit', compact('filiere', 'enseignants', 'ues'));
     }
